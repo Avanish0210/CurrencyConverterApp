@@ -2,7 +2,6 @@ package com.Api.CurrencyConverter.controller;
 
 import com.Api.CurrencyConverter.dto.ConverterDto;
 import com.Api.CurrencyConverter.service.ConverterService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +11,10 @@ import org.springframework.web.bind.annotation.*;
 public class CurrencyController {
     private final  ConverterService converterService;
 
-    @GetMapping("/{amount}")
-    public ConverterDto getCurrency(@PathVariable Double amount){
-        return converterService.convertCurrency(amount);
+    @GetMapping("/convert")
+    public ConverterDto getCurrency(@RequestParam("fromCurrency") String From , @RequestParam("ToCurrency") String To , @RequestParam("amount") Double amount){
+        return converterService.convertCurrency(From , To , amount);
     }
+    //currencyConverter/convert?fromCurrency=INR&ToCurrency=USD&amount=99.00
 
 }
